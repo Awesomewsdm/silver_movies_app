@@ -15,7 +15,7 @@ class MovieCard extends StatelessWidget {
       PageRouteBuilder(
         transitionDuration: const Duration(milliseconds: 800),
         reverseTransitionDuration: const Duration(milliseconds: 800),
-        pageBuilder: (_, __, ___) => FadeTransition(
+        pageBuilder: (_, __, _) => FadeTransition(
           opacity: __,
           child: MoviePage(movie: movie),
         ),
@@ -25,6 +25,7 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return InkWell(
       onTap: () => goToMoviePage(context, movie),
       child: Container(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:silver_movies_app/pages/home/widgets/all_movies.dart';
-import 'package:silver_movies_app/pages/home/widgets/app_header.dart';
-import 'package:silver_movies_app/pages/home/widgets/app_navigation.dart';
+import 'package:silver_movies_app/pages/home/components/all_movies.dart';
+import 'package:silver_movies_app/pages/home/components/bottom_navigation.dart';
+import 'package:silver_movies_app/pages/home/components/home_screen_header.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,8 +14,10 @@ class _HomePageState extends State<HomePage> {
   late Size size;
   double top = -300;
   double left = -300;
+
   @override
   void initState() {
+    
     super.initState();
   }
 
@@ -36,9 +38,7 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           width: size.width,
           height: size.height,
-          decoration: const BoxDecoration(
-            color: Colors.black,
-          ),
+          decoration: const BoxDecoration(color: Colors.black),
           child: Stack(
             children: [
               AnimatedPositioned(
@@ -48,8 +48,13 @@ class _HomePageState extends State<HomePage> {
                 left: left,
                 child: const AllMovies(),
               ),
-              const AppHeader(),
-              const AppNavigation()
+              const HomeScreenHeader(),
+              const Positioned(
+                bottom: 25,
+                left: 50,
+                right: 50,
+                child: BottomNavigation(),
+              ),
             ],
           ),
         ),

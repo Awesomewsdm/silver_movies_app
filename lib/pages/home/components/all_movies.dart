@@ -31,11 +31,11 @@ class _AllMoviesState extends State<AllMovies> {
           _movies = fetched.isNotEmpty ? fetched : movies;
         });
       }
-    } catch (e) {
+    } catch (error) {
       if (mounted) {
         setState(() {
-          _error = e.toString();
-          _movies = movies; // fallback to local list
+          _error = error.toString();
+          _movies = movies;
         });
       }
     }
@@ -45,6 +45,7 @@ class _AllMoviesState extends State<AllMovies> {
   Widget build(BuildContext context) {
     final useMovies = _movies ?? movies;
     final columns = sqrt(useMovies.length).toInt();
+    
     return SizedBox(
       width: columns * 320,
       child: _movies == null

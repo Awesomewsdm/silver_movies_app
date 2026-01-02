@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:silver_movies_app/widgets/glass_icon_button.dart';
 
-class AppHeader extends StatelessWidget {
-  const AppHeader({
+class HomeScreenHeader extends StatelessWidget {
+  const HomeScreenHeader({
     super.key,
   });
 

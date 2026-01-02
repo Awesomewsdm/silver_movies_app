@@ -3,10 +3,7 @@ import 'package:silver_movies_app/widgets/scaleup_animation.dart';
 import 'package:silver_movies_app/widgets/translate_animation.dart';
 
 class DateDaySelector extends StatefulWidget {
-  const DateDaySelector({
-    super.key,
-    required this.onChanged,
-  });
+  const DateDaySelector({super.key, required this.onChanged});
 
   final ValueChanged<DateTime> onChanged;
 
@@ -23,7 +20,10 @@ class _DateDaySelectorState extends State<DateDaySelector> {
     super.initState();
     _current = DateTime.now();
     _page = _current.day - 1;
-    _pageController = PageController(initialPage: _page.toInt(), viewportFraction: .23);
+    _pageController = PageController(
+      initialPage: _page.toInt(),
+      viewportFraction: .23,
+    );
   }
 
   void _onPageChange(int index) {
@@ -49,29 +49,23 @@ class _DateDaySelectorState extends State<DateDaySelector> {
             child: PageView(
               onPageChanged: (value) => _onPageChange(value),
               controller: _pageController,
-              children: List.generate(
-                daysInMonth,
-                (index) {
-                  firstDay = firstDay.add(const Duration(days: 1));
-                  final isSelected = index == _page;
-                  final angle = isSelected
-                      ? 0.0
-                      : index > _page
-                          ? index.isOdd
-                              ? .18
-                              : -.18
-                          : index.isOdd
-                              ? -.18
-                              : .18;
-                  return Transform.rotate(
-                    angle: angle,
-                    child: DayCard(
-                      dateTime: firstDay,
-                      isSelected: isSelected,
-                    ),
-                  );
-                },
-              ),
+              children: List.generate(daysInMonth, (index) {
+                firstDay = firstDay.add(const Duration(days: 1));
+                final isSelected = index == _page;
+                final angle = isSelected
+                    ? 0.0
+                    : index > _page
+                    ? index.isOdd
+                          ? .18
+                          : -.18
+                    : index.isOdd
+                    ? -.18
+                    : .18;
+                return Transform.rotate(
+                  angle: angle,
+                  child: DayCard(dateTime: firstDay, isSelected: isSelected),
+                );
+              }),
             ),
           ),
         ),
@@ -94,31 +88,23 @@ class ShadowedBox extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                stops: const [
-                  .01,
-                  .5,
-                  .99,
-                ],
+                stops: const [.01, .5, .99],
                 colors: [
                   Colors.black,
-                  Colors.black.withOpacity(0),
+                  Colors.black.withValues(alpha: 0),
                   Colors.black,
                 ],
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }
 }
 
 class DayCard extends StatelessWidget {
-  const DayCard({
-    super.key,
-    required this.dateTime,
-    required this.isSelected,
-  });
+  const DayCard({super.key, required this.dateTime, required this.isSelected});
 
   final DateTime dateTime;
   final bool isSelected;
@@ -141,7 +127,9 @@ class DayCard extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: isSelected ? [Colors.yellow, Colors.orange] : [Colors.white30, Colors.white30],
+                    colors: isSelected
+                        ? [Colors.yellow, Colors.orange]
+                        : [Colors.white30, Colors.white30],
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -150,10 +138,7 @@ class DayCard extends StatelessWidget {
                     const SizedBox(height: 30),
                     Text(
                       getDayOfWeek(dateTime.weekday).substring(0, 2),
-                      style: TextStyle(
-                        color: textColor,
-                        fontSize: 17,
-                      ),
+                      style: TextStyle(color: textColor, fontSize: 17),
                     ),
                     const SizedBox(height: 5),
                     Text(
@@ -163,7 +148,7 @@ class DayCard extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         fontSize: 24,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -175,19 +160,17 @@ class DayCard extends StatelessWidget {
               child: Column(
                 children: [
                   CircleAvatar(radius: 6, backgroundColor: Colors.black),
-                  SizedBox(
-                    height: 30,
-                  ),
+                  SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CircleAvatar(radius: 6, backgroundColor: Colors.black),
                       CircleAvatar(radius: 6, backgroundColor: Colors.black),
                     ],
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

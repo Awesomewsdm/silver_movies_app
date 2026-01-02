@@ -7,7 +7,7 @@ import 'package:silver_movies_app/widgets/app_chip.dart';
 import 'package:silver_movies_app/widgets/glass_icon_button.dart';
 import 'package:silver_movies_app/widgets/scaleup_animation.dart';
 import 'package:silver_movies_app/widgets/translateup_animation.dart';
-import 'package:audio_service/audio_service.dart';
+
 class MoviePage extends StatelessWidget {
   const MoviePage({super.key, required this.movie});
 

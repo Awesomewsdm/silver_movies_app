@@ -6,7 +6,7 @@ class AppChip extends StatelessWidget {
     required this.text,
     Color? color,
     this.textColor = Colors.white,
-  }) : color = color ?? Colors.white.withOpacity(.3);
+  }) : color = color ?? Colors.white.withValues(alpha: 0.3);
 
   final String text;
   final Color color;
